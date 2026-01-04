@@ -33,26 +33,32 @@
 
     .card {
       background: var(--card);
-      padding: 32px 36px;
-      border-radius: 16px;
+      padding: 36px 40px;
+      border-radius: 18px;
       width: 100%;
       max-width: 420px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
       text-align: center;
     }
 
     h1 {
       font-size: 28px;
-      margin-bottom: 24px;
+      margin-bottom: 6px;
       letter-spacing: 0.5px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 28px;
     }
 
     .status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      margin-bottom: 16px;
       font-size: 14px;
+      margin-bottom: 10px;
     }
 
     .dot {
@@ -73,6 +79,25 @@
     .uptime {
       font-size: 18px;
       font-weight: 500;
+      margin-bottom: 22px;
+    }
+
+    .divider {
+      height: 1px;
+      background: rgba(255,255,255,0.08);
+      margin: 22px 0;
+    }
+
+    .links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      margin: 0 10px;
+      transition: color 0.2s;
+    }
+
+    .links a:hover {
+      color: var(--accent);
     }
   </style>
 </head>
@@ -80,6 +105,7 @@
 <body>
   <div class="card">
     <h1>Ayush Tyagi</h1>
+    <div class="tagline">Learning · Building · Iterating</div>
 
     <div class="status">
       <div class="dot"></div>
@@ -87,20 +113,27 @@
     </div>
 
     <div id="uptime" class="uptime">
-      Calculating uptime…
+      Initializing…
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="links">
+      <a href="#">Projects</a>
+      <a href="#">GitHub</a>
+      <a href="#">Notes</a>
     </div>
   </div>
 
   <script>
-    // ✅ SET THIS TO A PAST TIME (very important)
-    // Example: today, or the time you first deployed
-    const launchTime = new Date(2026, 0, 5, 12, 0, 0); // CHANGE if needed
+    // 🔒 LOCKED launch time (PAST)
+    const launchTime = new Date("2026-01-05T00:00:00Z").getTime();
 
     function updateUptime() {
-      const now = new Date();
+      const now = Date.now();
       let diff = Math.floor((now - launchTime) / 1000);
 
-      if (diff < 0) diff = 0; // safety guard
+      if (diff < 0) diff = 0;
 
       const days = Math.floor(diff / 86400);
       diff %= 86400;
