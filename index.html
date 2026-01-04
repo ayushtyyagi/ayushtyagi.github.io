@@ -2,9 +2,49 @@
 <html>
   <head>
     <title>Ayush Tyagi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 100px;
+      }
+      #uptime {
+        font-size: 18px;
+        margin-top: 10px;
+        color: #555;
+      }
+    </style>
   </head>
+
   <body>
     <h1>Ayush Tyagi</h1>
-    <p>Lamda.</p>
+    <p>This site is live.</p>
+
+    <div id="uptime">Calculating uptime...</div>
+
+    <script>
+      // SET YOUR LAUNCH TIME HERE (YYYY, MM-1, DD, HH, MM, SS)
+      const launchTime = new Date(2026, 0, 6, 0, 0, 0);
+
+      function updateUptime() {
+        const now = new Date();
+        let diff = Math.floor((now - launchTime) / 1000);
+
+        const days = Math.floor(diff / (24 * 3600));
+        diff %= (24 * 3600);
+
+        const hours = Math.floor(diff / 3600);
+        diff %= 3600;
+
+        const minutes = Math.floor(diff / 60);
+        const seconds = diff % 60;
+
+        document.getElementById("uptime").innerText =
+          `Uptime: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+      }
+
+      updateUptime();
+      setInterval(updateUptime, 1000);
+    </script>
   </body>
 </html>
