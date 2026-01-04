@@ -105,7 +105,7 @@
 <body>
   <div class="card">
     <h1>Ayush Tyagi</h1>
-    <div class="tagline">Learning · Building · Iterating</div>
+    <div class="tagline"></div>
 
     <div class="status">
       <div class="dot"></div>
@@ -125,31 +125,24 @@
     </div>
   </div>
 
-  <script>
-    // 🔒 LOCKED launch time (PAST)
-    const launchTime = new Date("2026-01-05T00:00:00Z").getTime();
+<script>
+  const startTime = Date.now();
 
-    function updateUptime() {
-      const now = Date.now();
-      let diff = Math.floor((now - launchTime) / 1000);
+  function updateUptime() {
+    const diff = Math.floor((Date.now() - startTime) / 1000);
 
-      if (diff < 0) diff = 0;
+    const days = Math.floor(diff / 86400);
+    const hours = Math.floor((diff % 86400) / 3600);
+    const minutes = Math.floor((diff % 3600) / 60);
+    const seconds = diff % 60;
 
-      const days = Math.floor(diff / 86400);
-      diff %= 86400;
+    document.getElementById("uptime").textContent =
+      `Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
-      const hours = Math.floor(diff / 3600);
-      diff %= 3600;
-
-      const minutes = Math.floor(diff / 60);
-      const seconds = diff % 60;
-
-      document.getElementById("uptime").textContent =
-        `Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
-
-    updateUptime();
-    setInterval(updateUptime, 1000);
-  </script>
+  updateUptime();
+  setInterval(updateUptime, 1000);
+</script>
+</script>
 </body>
 </html>
