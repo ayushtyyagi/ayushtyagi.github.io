@@ -43,14 +43,8 @@
 
     h1 {
       font-size: 28px;
-      margin-bottom: 8px;
+      margin-bottom: 24px;
       letter-spacing: 0.5px;
-    }
-
-    .subtitle {
-      color: var(--muted);
-      margin-bottom: 28px;
-      font-size: 14px;
     }
 
     .status {
@@ -79,13 +73,6 @@
     .uptime {
       font-size: 18px;
       font-weight: 500;
-      margin-top: 6px;
-    }
-
-    .footer {
-      margin-top: 28px;
-      font-size: 12px;
-      color: var(--muted);
     }
   </style>
 </head>
@@ -93,7 +80,6 @@
 <body>
   <div class="card">
     <h1>Ayush Tyagi</h1>
-    <div class="subtitle">Personal site · Always on</div>
 
     <div class="status">
       <div class="dot"></div>
@@ -103,19 +89,18 @@
     <div id="uptime" class="uptime">
       Calculating uptime…
     </div>
-
-    <div class="footer">
-      Built from scratch · Hosted on GitHub Pages
-    </div>
   </div>
 
   <script>
-    // 👇 Set your launch time here (Year, Month-1, Day, Hour, Min, Sec)
-    const launchTime = new Date(2026, 0, 6, 0, 0, 0);
+    // ✅ SET THIS TO A PAST TIME (very important)
+    // Example: today, or the time you first deployed
+    const launchTime = new Date(2026, 0, 5, 12, 0, 0); // CHANGE if needed
 
     function updateUptime() {
       const now = new Date();
       let diff = Math.floor((now - launchTime) / 1000);
+
+      if (diff < 0) diff = 0; // safety guard
 
       const days = Math.floor(diff / 86400);
       diff %= 86400;
@@ -127,7 +112,7 @@
       const seconds = diff % 60;
 
       document.getElementById("uptime").textContent =
-        `${days}d ${hours}h ${minutes}m ${seconds}s uptime`;
+        `Uptime: ${days}d ${hours}h ${minutes}m ${seconds}s`;
     }
 
     updateUptime();
