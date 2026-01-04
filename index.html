@@ -1,50 +1,137 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Ayush Tyagi</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-        margin-top: 100px;
-      }
-      #uptime {
-        font-size: 18px;
-        margin-top: 10px;
-        color: #555;
-      }
-    </style>
-  </head>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ayush Tyagi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <body>
+  <style>
+    :root {
+      --bg: #0f1220;
+      --card: #171a2e;
+      --text: #eaeaf0;
+      --muted: #a0a3bd;
+      --accent: #6cf2c2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1b1f3b, var(--bg));
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   Roboto, Ubuntu, sans-serif;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card {
+      background: var(--card);
+      padding: 32px 36px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 28px;
+      font-size: 14px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      font-size: 14px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.4; }
+      100% { opacity: 1; }
+    }
+
+    .uptime {
+      font-size: 18px;
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    .footer {
+      margin-top: 28px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="card">
     <h1>Ayush Tyagi</h1>
-    <p>This site is live.</p>
+    <div class="subtitle">Personal site · Always on</div>
 
-    <div id="uptime">Calculating uptime...</div>
+    <div class="status">
+      <div class="dot"></div>
+      <span>Online</span>
+    </div>
 
-    <script>
-      // SET YOUR LAUNCH TIME HERE (YYYY, MM-1, DD, HH, MM, SS)
-      const launchTime = new Date(2026, 0, 6, 0, 0, 0);
+    <div id="uptime" class="uptime">
+      Calculating uptime…
+    </div>
 
-      function updateUptime() {
-        const now = new Date();
-        let diff = Math.floor((now - launchTime) / 1000);
+    <div class="footer">
+      Built from scratch · Hosted on GitHub Pages
+    </div>
+  </div>
 
-        const days = Math.floor(diff / (24 * 3600));
-        diff %= (24 * 3600);
+  <script>
+    // 👇 Set your launch time here (Year, Month-1, Day, Hour, Min, Sec)
+    const launchTime = new Date(2026, 0, 6, 0, 0, 0);
 
-        const hours = Math.floor(diff / 3600);
-        diff %= 3600;
+    function updateUptime() {
+      const now = new Date();
+      let diff = Math.floor((now - launchTime) / 1000);
 
-        const minutes = Math.floor(diff / 60);
-        const seconds = diff % 60;
+      const days = Math.floor(diff / 86400);
+      diff %= 86400;
 
-        document.getElementById("uptime").innerText =
-          `Uptime: ${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
-      }
+      const hours = Math.floor(diff / 3600);
+      diff %= 3600;
 
-      updateUptime();
-      setInterval(updateUptime, 1000);
-    </script>
-  </body>
+      const minutes = Math.floor(diff / 60);
+      const seconds = diff % 60;
+
+      document.getElementById("uptime").textContent =
+        `${days}d ${hours}h ${minutes}m ${seconds}s uptime`;
+    }
+
+    updateUptime();
+    setInterval(updateUptime, 1000);
+  </script>
+</body>
 </html>
